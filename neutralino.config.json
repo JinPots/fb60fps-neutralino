@@ -5,7 +5,7 @@
   "port": 0,
   "documentRoot": "/resources/",
   "url": "/",
-  "enableServer": false,
+  "enableServer": true,
   "enableNativeAPI": true,
   "tokenSecurity": "one-time",
   "logging": {

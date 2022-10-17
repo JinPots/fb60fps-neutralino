@@ -1,17 +1,15 @@
-# neutralinojs-minimal
+# fb60fps-neutralino
 
-The default template for a Neutralinojs app. It's possible to use your favorite frontend framework by using [these steps](https://neutralino.js.org/docs/how-to/use-a-frontend-library).
+## Neutralino / Lightweight version of facebook60fps-re-encoder
 
-## Contributors
+![Facebook 60FPS Re-Encoder Screenshot](https://cdn.discordapp.com/attachments/702488640525172787/1031514730227052594/unknown.png)
 
-<a href="https://github.com/neutralinojs/neutralinojs-minimal/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=neutralinojs/neutralinojs-minimal" />
-</a>
+A simple tool to re-encode 60FPS videos to be able to upload to Facebook (losing a bit of quality is guaranteed).
 
-## License
+# Download
+You can grab a copy from the Release Tab.
 
-[MIT](LICENSE)
+[Click here if you want easy access to the download.](https://github.com/JinPots/fb60fps-neutralino/releases/latest)
 
-## Icon credits
-
-- `trayIcon.png` - Made by [Freepik](https://www.freepik.com) and downloaded from [Flaticon](https://www.flaticon.com)
+# Credit
+All credits goes to [Cao Mi Le](https://osu.ppy.sh/users/10910765) (Aka. Thuan Cay), the one provided the command for everyone
