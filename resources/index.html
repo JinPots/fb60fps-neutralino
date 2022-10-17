@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Facebook 60FPS Re-encoder</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div id="firstStart">
+    <h1>Please wait a bit!</h1>
+    <p>It's the first time you start the program, so it's downloading the required files.</p>
+    <p>It will take a few minutes, this program will restart itself.</p>
+  </div>
+  <div id="main">
+
+    <button type="button" id="inputFile" class="button-27">Open File</button> <span id="fileName">No file have been selected.</span>
+    <br> <br>
+    <button id="convert" class="button-27">Re-encode video.</button>
+
+    <div id="log">
+      <h2>Log</h2>
+      <div id="logContent"></div>
+    </div>
+  </div>
+  <script src="js/neutralino.js"></script>
+  <!-- Your app's source files -->
+  <script src="js/main.js"></script>
+</body>
+
+</html>
