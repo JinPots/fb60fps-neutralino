@@ -87,15 +87,15 @@ async function convert() {
     let args = [
         ffmpegPath,
         '-i',
-        filePath,
+        `"${filePath}"`,
         '-c:v',
         'libx264',
         '-qp',
-        '35',
+        '33',
         '-vf "scale=-1:720"',
         '-b:v',
         '1.6M',
-        `${filePath.split('/').slice(0, -1).join('/')}/${filename.split('.')[0]}_60fps.mp4`, '-y'
+        `"${filePath.split('/').slice(0, -1).join('/')}/${filename.split('.')[0]}_60fps.mp4"`, '-y'
     ]
     console.log(args.join(' '))
     let logDiv = document.getElementById("logContent")
@@ -116,7 +116,11 @@ async function convert() {
                     break;
                 case 'exit':
                     const p = document.createElement('p');
-                    p.innerText = `Video converted successfully!`;
+                    if (evt.detail.exitCode == 0) {
+                        p.innerText = `Video converted successfully!`;
+                    } else {
+                        p.innerText = `Video conversion failed!`;
+                    }
                     logDiv.appendChild(p);
                     logDiv.scrollTop = logDiv.scrollHeight;
                     Neutralino.os.showNotification('Success!', 'Video converted successfully!');
