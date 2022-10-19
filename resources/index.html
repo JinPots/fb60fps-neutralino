@@ -13,6 +13,7 @@
     <p>It's the first time you start the program, so it's downloading the required files.</p>
     <p>It will take a few minutes, this program will restart itself.</p>
   </div>
+
   <div id="main">
 
     <button type="button" id="inputFile" class="button-27">Open File</button> <span id="fileName">No file have been selected.</span>
@@ -23,6 +24,21 @@
       <h2>Log</h2>
       <div id="logContent"></div>
     </div>
+  </div>
+  <div id="encoderSelection">
+    <h1>Select encoder you want to use!</h1>
+    <form name="encoderSelect">
+      <input type="radio" name="encoder" id="cpu" value="cpu" checked> <label for="cpu">CPU</label> <br>
+      <input type="radio" name="encoder" id="gpu" value="gpu"> <label for="gpu">GPU</label>
+    </form>
+  </div>
+
+  <div id="resolutionSelection">
+    <h1>Select encoder you want to use!</h1>
+    <form name="resolutionSelect">
+      <input type="radio" name="resolution" id="1080" value="1080" > <label for="1080">1080p</label> <br>
+      <input type="radio" name="resolution" id="720" value="720" checked> <label for="720">720p</label>
+    </form>
   </div>
   <script src="js/neutralino.js"></script>
   <!-- Your app's source files -->

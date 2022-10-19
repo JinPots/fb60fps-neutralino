@@ -1,5 +1,5 @@
 const ffmpegURL = `https://github.com/BtbN/FFmpeg-Builds/releases/download/latest/ffmpeg-master-latest-win64-gpl.zip`
-let ffmpegPath
+let ffmpegPath, encoder = 'libx264', preset = 'slow', gpu, resolution = '720'
 
 async function check() {
     console.log('Checking for ffmpeg... (System-wide)')
@@ -9,8 +9,11 @@ async function check() {
         ffmpegPath = NL_CWD + '/ffmpeg.exe'
         check2();
     } else {
+        checkHardware()
         document.getElementById('firstStart').style.visibility = 'hidden';
         document.getElementById('main').style.visibility = 'visible';
+        document.getElementById('encoderSelection').style.visibility = 'visible';
+        // document.getElementById('resolutionSelection').style.visibility = 'visible';
         ffmpegPath = 'ffmpeg'
     }
 }
@@ -23,8 +26,11 @@ async function check2() {
         ffmpegPath = NL_CWD + '/ffmpeg-master-latest-win64-gpl/bin/ffmpeg.exe'
         check3()
     } else {
+        checkHardware()
         document.getElementById('firstStart').style.visibility = 'hidden';
+        document.getElementById('encoderSelection').style.visibility = 'visible';
         document.getElementById('main').style.visibility = 'visible';
+        // document.getElementById('resolutionSelection').style.visibility = 'visible';
     }
 }
 
@@ -41,8 +47,11 @@ async function check3() {
         `
         await downloadFFmpeg();
     } else {
+        checkHardware()
         document.getElementById('firstStart').style.visibility = 'hidden';
         document.getElementById('main').style.visibility = 'visible';
+        document.getElementById('encoderSelection').style.visibility = 'visible';
+        // document.getElementById('resolutionSelection').style.visibility = 'visible';
     }
 }
 
@@ -54,6 +63,19 @@ async function downloadFFmpeg() {
     Neutralino.app.restartProcess();
 }
 
+async function checkHardware() {
+    let hw = await Neutralino.os.execCommand('ffmpeg -hwaccels')
+    const hwOutput = hw.stdOut.split('\n')
+    hwOutput.forEach((line) => {
+        if (line.includes('amf')) {
+            gpu = 'h264_amf'
+        } else if (line.includes('nvenc')) {
+            gpu = 'h264_nvenc'
+        } else if (line.includes('qsv')) {
+            gpu = 'h264_qsv'
+        }
+    })
+}
 function onWindowClose() {
     Neutralino.app.exit();
 }
@@ -67,7 +89,7 @@ document.getElementById("inputFile").addEventListener("click", openFile);
 
 let filePath, filename
 async function openFile() {
-    let entries = await Neutralino.os.showOpenDialog('Save your diagram', {
+    let entries = await Neutralino.os.showOpenDialog('Choose the video you want to re-encode!', {
         filters: [
             { name: 'Videos', extensions: ['mp4', 'mkv', 'avi'] }
         ]
@@ -89,12 +111,11 @@ async function convert() {
         '-i',
         `"${filePath}"`,
         '-c:v',
-        'libx264',
-        '-qp',
-        '33',
-        '-vf "scale=-1:720"',
-        '-b:v',
-        '1.6M',
+        encoder,
+        `-vf "scale=-1:720"`,
+        '-crf 23',
+        '-maxrate 1.6M',
+        `-preset ${preset}`,
         `"${filePath.split('/').slice(0, -1).join('/')}/${filename.split('.')[0]}_60fps.mp4"`, '-y'
     ]
     console.log(args.join(' '))
@@ -111,23 +132,61 @@ async function convert() {
                     const p2 = document.createElement('p');
                     p2.innerText = evt.detail.data;
                     logDiv.appendChild(p2);
+                    if (evt.detail.data.includes('width not divisible by 2')) {
+                        const p = document.createElement('p');
+                        p.innerText = 'The video resolution is not divisible by 2, the conversion will be skipped.';
+                        logDiv.appendChild(p);
+                    }
                     logDiv.scrollTop = logDiv.scrollHeight;
-                    console.error(evt.detail.data);
                     break;
                 case 'exit':
                     const p = document.createElement('p');
-                    if (evt.detail.exitCode == 0) {
-                        p.innerText = `Video converted successfully!`;
-                    } else {
-                        p.innerText = `Video conversion failed!`;
-                    }
+                    p.innerText = 'Conversion completed!';
                     logDiv.appendChild(p);
                     logDiv.scrollTop = logDiv.scrollHeight;
-                    Neutralino.os.showNotification('Success!', 'Video converted successfully!');
+                    Neutralino.os.showNotification('Finished!', 'Conversion completed!');
                     console.log(`Ping process terminated with exit code: ${evt.detail.data}`);
                     break;
             }
         }
     })
 
+}
+
+var rad = document.encoderSelect.encoder;
+var prev = null;
+for (var i = 0; i < rad.length; i++) {
+    rad[i].addEventListener('change', function () {
+        if (this !== prev) {
+            prev = this;
+        }
+        changeEncoder(this.value);
+    });
+}
+
+function changeEncoder(encoderName) {
+    if (encoderName == 'cpu') {
+        encoder = 'libx264'
+    } else if (encoderName == 'gpu') {
+        encoder = gpu
+        if (encoder == 'nvenc') {
+            preset = 'p7'
+        } else {
+            preset = 'slow'
+        }
+    }
+    console.log(encoder, preset)
+}
+
+
+var rad = document.resolutionSelect.resolution;
+var prev2 = null;
+for (var i = 0; i < rad.length; i++) {
+    rad[i].addEventListener('change', function () {
+        if (this !== prev2) {
+            prev2 = this;
+        }
+        resolution = this.value;
+
+    });
 }

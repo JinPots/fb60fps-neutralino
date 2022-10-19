@@ -1,6 +1,6 @@
 {
   "applicationId": "fb60fps-neutralino",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "defaultMode": "window",
   "port": 0,
   "documentRoot": "/resources/",
@@ -25,14 +25,14 @@
   "modes": {
     "window": {
       "title": "Facebook 60FPS Re-encoder",
-      "width": 400,
+      "width": 650,
       "height": 700,
-      "minWidth": 400,
+      "minWidth": 600,
       "minHeight": 700,
       "fullScreen": false,
       "alwaysOnTop": false,
       "icon": "/resources/icons/appIcon.png",
-      "enableInspector": false,
+      "enableInspector": true,
       "borderless": false,
       "maximize": false,
       "hidden": false,

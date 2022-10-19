@@ -9,7 +9,7 @@ body {
 }
 
 #main {
-  width: 100%;
+  width: 370px;
   height: 100%;
   position: absolute;
   top: 0;
@@ -18,6 +18,58 @@ body {
   text-align: center;
   padding-top: 20px;
   visibility: hidden;
+}
+
+#encoderSelection {
+  position: absolute;
+  width: 220px;
+  height: 100px;
+  background-color: #413e3e;
+  top: 30px;
+  right: 10px;
+  visibility: hidden;
+  border-radius: 10px;
+}
+
+#encoderSelection > h1{
+  font-size: 15px;
+  color: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+#encoderSelection > form > input{
+  font-size: 30px;
+  color: #fff;
+  margin-left: 20px;
+  text-align: center;
+}
+
+#resolutionSelection {
+  position: absolute;
+  width: 220px;
+  height: 100px;
+  background-color: #413e3e;
+  top: 150px;
+  right: 10px;
+  visibility: hidden;
+  border-radius: 10px;
+}
+
+#resolutionSelection > h1{
+  font-size: 15px;
+  color: #fff;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+}
+
+#resolutionSelection > form > input{
+  font-size: 30px;
+  color: #fff;
+  margin-left: 20px;
+  text-align: center;
 }
 
 #inputFile {
