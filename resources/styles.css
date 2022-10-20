@@ -23,7 +23,7 @@ body {
 #encoderSelection {
   position: absolute;
   width: 220px;
-  height: 100px;
+  height: 150px;
   background-color: #413e3e;
   top: 30px;
   right: 10px;
@@ -40,32 +40,6 @@ body {
 }
 
 #encoderSelection > form > input{
-  font-size: 30px;
-  color: #fff;
-  margin-left: 20px;
-  text-align: center;
-}
-
-#resolutionSelection {
-  position: absolute;
-  width: 220px;
-  height: 100px;
-  background-color: #413e3e;
-  top: 150px;
-  right: 10px;
-  visibility: hidden;
-  border-radius: 10px;
-}
-
-#resolutionSelection > h1{
-  font-size: 15px;
-  color: #fff;
-  margin-left: 10px;
-  margin-right: 10px;
-  text-align: center;
-}
-
-#resolutionSelection > form > input{
   font-size: 30px;
   color: #fff;
   margin-left: 20px;

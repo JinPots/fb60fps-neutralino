@@ -28,18 +28,13 @@
   <div id="encoderSelection">
     <h1>Select encoder you want to use!</h1>
     <form name="encoderSelect">
-      <input type="radio" name="encoder" id="cpu" value="cpu" checked> <label for="cpu">CPU</label> <br>
-      <input type="radio" name="encoder" id="gpu" value="gpu"> <label for="gpu">GPU</label>
+      <input type="radio" name="encoder" id="cpu" value="libx264" checked> <label for="cpu">CPU</label> <br>
+      <input type="radio" name="encoder" id="nvidia" value="h264_nvenc"> <label for="gpu">NVIDIA GPU</label> <br>
+      <input type="radio" name="encoder" id="amd" value="h264_amf"> <label for="gpu">AMD GPU</label> <br>
+      <input type="radio" name="encoder" id="intel" value="h264_qsv"> <label for="gpu">INTEL GPU</label>
     </form>
   </div>
 
-  <div id="resolutionSelection">
-    <h1>Select encoder you want to use!</h1>
-    <form name="resolutionSelect">
-      <input type="radio" name="resolution" id="1080" value="1080" > <label for="1080">1080p</label> <br>
-      <input type="radio" name="resolution" id="720" value="720" checked> <label for="720">720p</label>
-    </form>
-  </div>
   <script src="js/neutralino.js"></script>
   <!-- Your app's source files -->
   <script src="js/main.js"></script>
